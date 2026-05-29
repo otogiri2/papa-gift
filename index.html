@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Папа дома</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="background">
+    <div class="camouflage"></div>
+    <div class="grid"></div>
+    <div class="radar"></div>
+    <div class="vignette"></div>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <audio id="music" src="assets/music.mp3" loop preload="auto"></audio>
+
+  <main class="app">
+
+    <div class="progress">
+      <div class="progress-text">
+        <span>МИССИЯ: ПОДАРОК ПАПЕ</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-line">
+        <div id="progressFill"></div>
+      </div>
+    </div>
+
+    <section class="screen active" id="screen-1">
+      <div class="card intro-card">
+        <div class="card-header">
+          <span>СЕМЕЙНЫЙ ШТАБ</span>
+          <span>СТАТУС: ГОТОВО</span>
+        </div>
+
+        <div class="mission-mark">ОПЕРАЦИЯ</div>
+
+        <h1>ПАПА ДОМА</h1>
+
+        <p class="subtitle">
+          День рождения был неделю назад, но главный праздник — сегодня.
+          Потому что сегодня мы вместе.
+        </p>
+
+        <div class="mission-info">
+          <div>
+            <small>Кому</small>
+            <b>Папе</b>
+          </div>
+          <div>
+            <small>От кого</small>
+            <b>Яна и Богдан</b>
+          </div>
+          <div>
+            <small>Повод</small>
+            <b>День рождения</b>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button onclick="startGift()">Начать миссию</button>
+          <button class="ghost" onclick="toggleMusic()">Музыка</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-2">
+      <div class="card">
+        <div class="card-header">
+          <span>ЛИЧНОЕ СООБЩЕНИЕ</span>
+          <span>ОТ ЯНЫ И БОГДАНА</span>
+        </div>
+
+        <h2>Пап, это для тебя</h2>
+
+        <p class="typing-text" id="typingText"></p>
+
+        <button onclick="nextScreen()">Продолжить</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-3">
+      <div class="card wide">
+        <div class="card-header">
+          <span>АРХИВ СЕМЬИ</span>
+          <span>ФОТО</span>
+        </div>
+
+        <h2>Наши моменты</h2>
+
+        <div class="gallery">
+          <button class="arrow" onclick="prevPhoto()">‹</button>
+
+          <div class="photo-shell">
+            <img id="photo" src="assets/photo1.jpg" alt="Фото" onerror="showPlaceholder()" />
+            <div class="placeholder" id="placeholder">
+              Добавь фото в папку <b>assets</b><br>
+              Названия: photo1.jpg, photo2.jpg...
+            </div>
+          </div>
+
+          <button class="arrow" onclick="nextPhoto()">›</button>
+        </div>
+
+        <p class="caption" id="caption">
+          Главное — не дата в календаре. Главное — что ты рядом.
+        </p>
+
+        <button onclick="nextScreen()">Дальше</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-4">
+      <div class="card wide">
+        <div class="card-header">
+          <span>ДОСЬЕ</span>
+          <span>ЛУЧШИЙ ПАПА</span>
+        </div>
+
+        <h2>За что мы тебя ценим</h2>
+
+        <div class="tiles">
+          <div class="tile">
+            <strong>Сила</strong>
+            <p>Ты умеешь держаться даже тогда, когда тяжело.</p>
+          </div>
+          <div class="tile">
+            <strong>Характер</strong>
+            <p>Ты показываешь, что значит быть надёжным человеком.</p>
+          </div>
+          <div class="tile">
+            <strong>Семья</strong>
+            <p>Для нас самое важное — что ты снова рядом с нами.</p>
+          </div>
+          <div class="tile">
+            <strong>Пример</strong>
+            <p>Ты человек, которым можно гордиться.</p>
+          </div>
+        </div>
+
+        <button onclick="nextScreen()">К пожеланиям</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-5">
+      <div class="card">
+        <div class="card-header">
+          <span>ПОЖЕЛАНИЯ</span>
+          <span>ОТ СЕРДЦА</span>
+        </div>
+
+        <h2>Мы желаем тебе</h2>
+
+        <div class="wish-list">
+          <div>Крепкого здоровья</div>
+          <div>Спокойствия в душе</div>
+          <div>Сил и терпения</div>
+          <div>Больше времени дома</div>
+          <div>Верных людей рядом</div>
+          <div>Всегда возвращаться к семье</div>
+        </div>
+
+        <button onclick="nextScreen()">Открыть мини-игру</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-6">
+      <div class="card wide">
+        <div class="card-header">
+          <span>МИНИ-ИГРА</span>
+          <span>СОБЕРИ ТЕПЛО ДЛЯ ПАПЫ</span>
+        </div>
+
+        <h2>Собери 10 сердечек</h2>
+
+        <p class="caption">
+          Нажимай на сердечки, которые появляются на поле. Когда соберёшь 10 — откроется финал.
+        </p>
+
+        <div class="game-hud">
+          <div>Собрано: <b id="score">0</b> / 10</div>
+          <div id="gameStatus">Готово</div>
+        </div>
+
+        <div class="game-field" id="gameField">
+          <div class="game-start">
+            <button onclick="startMiniGame()">Начать игру</button>
+          </div>
+        </div>
+
+        <button class="ghost" onclick="skipMiniGame()">Пропустить и открыть финал</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-7">
+      <div class="card final-card">
+        <div class="card-header">
+          <span>МИССИЯ ВЫПОЛНЕНА</span>
+          <span>100%</span>
+        </div>
+
+        <h2>Папа, с днём рождения</h2>
+
+        <p class="final-text">
+          Пусть мы отмечаем не день в день, но сегодня ты рядом,
+          и это самое важное. Спасибо тебе за всё.
+          Мы тебя любим, ценим и очень тобой гордимся.
+        </p>
+
+        <div class="sign">
+          От Яны и Богдана ❤️
+        </div>
+
+        <div class="effect-buttons">
+          <button onclick="heartRain()">Сердечки</button>
+          <button onclick="fireworks()">Салют</button>
+          <button onclick="comboEffect()">Комбо</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="fireworks" id="fireworks"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
