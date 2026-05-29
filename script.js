@@ -11,10 +11,10 @@ const totalScreens = 7;
 const totalPhotos = 6;
 
 const messageText =
-  "Пап, с днём рождения. Пусть сам день уже прошёл, но сегодня мы наконец отмечаем его вместе. Мы очень рады, что ты приехал домой в отпуск. Для нас важно просто видеть тебя рядом, слышать твой голос и понимать, что ты дома. Спасибо тебе за силу, терпение, поддержку и за всё, что ты делаешь для нашей семьи. Мы гордимся тобой. Мы ценим тебя. Мы тебя очень любим.";
+  "Пап, с днём рождения. Твой день рождения был 22-го, а отмечаем мы 30-го, но для нас главное не дата, а то, что сегодня ты рядом. Мы очень рады, что ты приехал домой в отпуск. Для нас важно просто видеть тебя, слышать твой голос и понимать, что ты дома. Спасибо тебе за силу, терпение, поддержку и за всё, что ты делаешь для нашей семьи. Мы гордимся тобой. Мы ценим тебя. Мы тебя очень любим.";
 
 const captions = [
-  "Главное — не дата в календаре. Главное — что ты рядом.",
+  "22-го был день рождения, а 30-го мы отмечаем главное — что ты рядом.",
   "Есть моменты, которые хочется сохранить навсегда.",
   "Семья — это место, где тебя всегда ждут.",
   "Сегодня не просто праздник. Сегодня папа дома.",
@@ -37,6 +37,7 @@ function startMusicSoft() {
   const music = document.getElementById("music");
 
   music.volume = 0;
+
   music.play().then(() => {
     musicStarted = true;
     fadeMusicTo(0.45, 1800);
@@ -93,6 +94,11 @@ function nextScreen() {
     const newScreen = document.getElementById(`screen-${currentScreen}`);
     newScreen.classList.add("active");
 
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
     setTimeout(() => {
       newScreen.classList.add("show");
     }, 20);
@@ -128,6 +134,11 @@ function goToFinal() {
 
     const finalScreen = document.getElementById("screen-7");
     finalScreen.classList.add("active");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
 
     setTimeout(() => {
       finalScreen.classList.add("show");
@@ -165,13 +176,21 @@ function typeMessage() {
 
 function nextPhoto() {
   currentPhoto++;
-  if (currentPhoto > totalPhotos) currentPhoto = 1;
+
+  if (currentPhoto > totalPhotos) {
+    currentPhoto = 1;
+  }
+
   updatePhoto();
 }
 
 function prevPhoto() {
   currentPhoto--;
-  if (currentPhoto < 1) currentPhoto = totalPhotos;
+
+  if (currentPhoto < 1) {
+    currentPhoto = totalPhotos;
+  }
+
   updatePhoto();
 }
 
@@ -226,8 +245,8 @@ function spawnHeart() {
   heart.textContent = "❤️";
 
   const size = 54;
-  const maxX = field.clientWidth - size;
-  const maxY = field.clientHeight - size;
+  const maxX = Math.max(10, field.clientWidth - size);
+  const maxY = Math.max(10, field.clientHeight - size);
 
   heart.style.left = Math.random() * maxX + "px";
   heart.style.top = Math.random() * maxY + "px";
@@ -365,7 +384,9 @@ function startParticles() {
 
     particles = [];
 
-    for (let i = 0; i < 85; i++) {
+    const count = window.innerWidth < 768 ? 45 : 85;
+
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
