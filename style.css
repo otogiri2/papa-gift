@@ -906,3 +906,235 @@ button.ghost {
     height: 260px;
   }
 }
+
+/* ===== ЖЁСТКОЕ ИСПРАВЛЕНИЕ ТЕЛЕФОНА ===== */
+
+@media (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+  }
+
+  .app {
+    width: 100%;
+    height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  .screen {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100%;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    padding: 66px 10px 14px !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+
+  .screen.active {
+    display: flex !important;
+  }
+
+  .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: calc(100dvh - 90px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 18px 14px !important;
+    border-radius: 18px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .card::before {
+    display: none !important;
+  }
+
+  .progress {
+    top: 8px !important;
+    width: calc(100% - 20px) !important;
+  }
+
+  .progress-text {
+    font-size: 8px !important;
+    letter-spacing: 1px !important;
+  }
+
+  h1 {
+    font-size: 36px !important;
+    letter-spacing: 2px !important;
+    line-height: 1 !important;
+    margin-bottom: 14px !important;
+  }
+
+  h2 {
+    font-size: 27px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .subtitle,
+  .typing-text,
+  .caption,
+  .final-text {
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .card-header {
+    font-size: 8px !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 14px !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .mission-mark {
+    font-size: 9px !important;
+    padding: 6px 10px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .mission-info {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    margin: 14px 0 !important;
+  }
+
+  .mission-info div {
+    padding: 11px !important;
+  }
+
+  .mission-info b {
+    font-size: 16px !important;
+  }
+
+  .buttons,
+  .effect-buttons {
+    flex-direction: column !important;
+    gap: 9px !important;
+  }
+
+  button {
+    width: 100% !important;
+    padding: 13px 14px !important;
+    font-size: 15px !important;
+  }
+
+  .gallery {
+    grid-template-columns: 36px 1fr 36px !important;
+    gap: 6px !important;
+    margin: 12px 0 !important;
+  }
+
+  .arrow {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    font-size: 25px !important;
+  }
+
+  .photo-shell {
+    height: 260px !important;
+    border-radius: 15px !important;
+  }
+
+  .tiles {
+    grid-template-columns: 1fr !important;
+    gap: 9px !important;
+    margin: 14px 0 18px !important;
+  }
+
+  .tile {
+    padding: 14px !important;
+  }
+
+  .tile strong {
+    font-size: 19px !important;
+  }
+
+  .tile p {
+    font-size: 14px !important;
+  }
+
+  .wish-list {
+    gap: 8px !important;
+    margin: 14px 0 18px !important;
+  }
+
+  .wish-list div {
+    font-size: 15px !important;
+    padding: 11px 13px !important;
+  }
+
+  .game-hud {
+    flex-direction: column !important;
+    font-size: 14px !important;
+    gap: 7px !important;
+  }
+
+  .game-field {
+    height: 240px !important;
+    margin: 12px 0 14px !important;
+  }
+
+  .game-heart {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 23px !important;
+  }
+
+  .sign {
+    font-size: 22px !important;
+    margin: 16px 0 !important;
+  }
+
+  .radar {
+    width: 360px !important;
+    height: 360px !important;
+    right: -160px !important;
+    top: -160px !important;
+    opacity: 0.45 !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .screen {
+    padding: 60px 8px 10px !important;
+  }
+
+  .card {
+    max-height: calc(100dvh - 76px) !important;
+    padding: 15px 11px !important;
+  }
+
+  h1 {
+    font-size: 31px !important;
+  }
+
+  h2 {
+    font-size: 24px !important;
+  }
+
+  .subtitle,
+  .typing-text,
+  .caption,
+  .final-text {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+
+  .photo-shell {
+    height: 220px !important;
+  }
+
+  .game-field {
+    height: 220px !important;
+  }
+}
