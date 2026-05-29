@@ -4,11 +4,17 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
 body {
+  width: 100%;
+  min-height: 100vh;
   background: #030504;
   color: #f3edd5;
   font-family: Arial, sans-serif;
-  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -36,6 +42,7 @@ body {
   from {
     transform: scale(1) translate(0, 0);
   }
+
   to {
     transform: scale(1.08) translate(-30px, 20px);
   }
@@ -56,6 +63,7 @@ body {
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(54px);
   }
@@ -112,6 +120,7 @@ body {
 .progress-text {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
   color: #d5c07a;
   font-size: 11px;
   letter-spacing: 2px;
@@ -161,6 +170,7 @@ body {
     transform: translateY(35px) scale(.96);
     filter: blur(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -173,6 +183,7 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+
   to {
     opacity: 0;
     transform: translateY(-20px) scale(.97);
@@ -181,6 +192,8 @@ body {
 
 .card {
   width: min(780px, 100%);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
   padding: 34px;
   border-radius: 24px;
   background:
@@ -191,7 +204,6 @@ body {
     inset 0 0 55px rgba(142, 170, 85, .07);
   backdrop-filter: blur(18px);
   position: relative;
-  overflow: hidden;
 }
 
 .card::before {
@@ -208,6 +220,7 @@ body {
   0% {
     transform: translateX(-120%);
   }
+
   45%, 100% {
     transform: translateX(120%);
   }
@@ -368,6 +381,7 @@ button.ghost {
     transform: scale(1.04);
     filter: blur(5px);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -442,16 +456,31 @@ button.ghost {
   animation: wishFloat 3s ease-in-out infinite;
 }
 
-.wish-list div:nth-child(2) { animation-delay: .2s; }
-.wish-list div:nth-child(3) { animation-delay: .4s; }
-.wish-list div:nth-child(4) { animation-delay: .6s; }
-.wish-list div:nth-child(5) { animation-delay: .8s; }
-.wish-list div:nth-child(6) { animation-delay: 1s; }
+.wish-list div:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.wish-list div:nth-child(3) {
+  animation-delay: .4s;
+}
+
+.wish-list div:nth-child(4) {
+  animation-delay: .6s;
+}
+
+.wish-list div:nth-child(5) {
+  animation-delay: .8s;
+}
+
+.wish-list div:nth-child(6) {
+  animation-delay: 1s;
+}
 
 @keyframes wishFloat {
   0%, 100% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(5px);
   }
@@ -477,81 +506,6 @@ button.ghost {
   margin: 26px 0;
 }
 
-.fireworks {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 50;
-}
-
-.spark {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  animation: sparkMove 1.25s ease-out forwards;
-}
-
-@keyframes sparkMove {
-  from {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translate(var(--x), var(--y)) scale(0);
-  }
-}
-
-@media (max-width: 720px) {
-  .progress {
-    top: 14px;
-  }
-
-  .screen {
-    padding-top: 70px;
-  }
-
-  .card {
-    padding: 24px;
-  }
-
-  .card-header {
-    font-size: 9px;
-  }
-
-  .mission-info {
-    grid-template-columns: 1fr;
-  }
-
-  .buttons {
-    flex-direction: column;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  .gallery {
-    grid-template-columns: 42px 1fr 42px;
-    gap: 8px;
-  }
-
-  .arrow {
-    width: 42px;
-    height: 42px;
-    font-size: 28px;
-  }
-
-  .photo-shell {
-    height: 340px;
-  }
-
-  .tiles {
-    grid-template-columns: 1fr;
-  }
-}
 .game-hud {
   display: flex;
   justify-content: space-between;
@@ -617,6 +571,7 @@ button.ghost {
     opacity: 0;
     transform: scale(.2);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -627,6 +582,7 @@ button.ghost {
   0%, 100% {
     filter: brightness(1);
   }
+
   50% {
     filter: brightness(1.35);
   }
@@ -646,6 +602,34 @@ button.ghost {
   flex-wrap: wrap;
 }
 
+.fireworks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.spark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: sparkMove 1.25s ease-out forwards;
+}
+
+@keyframes sparkMove {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0);
+  }
+}
+
 .fall-heart {
   position: fixed;
   top: -70px;
@@ -660,23 +644,265 @@ button.ghost {
     transform: translateY(-80px) rotate(0deg);
     opacity: 1;
   }
+
   to {
     transform: translateY(calc(100vh + 120px)) rotate(360deg);
     opacity: 0;
   }
 }
 
-@media (max-width: 720px) {
-  .game-field {
-    height: 300px;
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .app {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .screen {
+    position: relative;
+    min-height: 100vh;
+    padding: 72px 12px 28px;
+    align-items: flex-start;
+  }
+
+  .screen:not(.active) {
+    display: none;
+  }
+
+  .screen.active {
+    display: flex;
+  }
+
+  .progress {
+    top: 10px;
+    width: calc(100% - 22px);
+  }
+
+  .progress-text {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .progress-line {
+    height: 5px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    overflow-y: visible;
+    padding: 18px 14px;
+    border-radius: 18px;
+    margin: 0 auto;
+  }
+
+  .wide {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-header {
+    font-size: 8px;
+    letter-spacing: 1px;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .mission-mark {
+    font-size: 10px;
+    padding: 7px 11px;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    line-height: .95;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: 1.08;
+    margin-bottom: 16px;
+  }
+
+  .subtitle,
+  .typing-text,
+  .caption,
+  .final-text {
+    font-size: 16px;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  .mission-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 18px 0;
+  }
+
+  .mission-info div {
+    padding: 13px;
+    border-radius: 13px;
+  }
+
+  .mission-info b {
+    font-size: 17px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .gallery {
+    grid-template-columns: 38px 1fr 38px;
+    gap: 7px;
+    margin: 14px 0;
+  }
+
+  .arrow {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    font-size: 26px;
+  }
+
+  .photo-shell {
+    height: 310px;
+    border-radius: 16px;
+  }
+
+  .photo-shell img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .placeholder {
+    font-size: 14px;
+    padding: 14px;
+  }
+
+  .tiles {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 18px 0 22px;
+  }
+
+  .tile {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .tile strong {
+    font-size: 20px;
+  }
+
+  .tile p {
+    font-size: 15px;
+  }
+
+  .wish-list {
+    gap: 9px;
+    margin: 18px 0 22px;
+  }
+
+  .wish-list div {
+    font-size: 16px;
+    padding: 13px 14px;
   }
 
   .game-hud {
     flex-direction: column;
-    font-size: 16px;
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .game-hud div {
+    padding: 10px 12px;
+  }
+
+  .game-field {
+    height: 300px;
+    border-radius: 16px;
+    margin: 14px 0 16px;
+  }
+
+  .game-heart {
+    width: 48px;
+    height: 48px;
+    font-size: 25px;
   }
 
   .effect-buttons {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .sign {
+    font-size: 23px;
+    margin: 20px 0;
+  }
+
+  .radar {
+    width: 420px;
+    height: 420px;
+    right: -170px;
+    top: -170px;
+    opacity: .65;
+  }
+
+  .grid {
+    background-size: 38px 38px;
+  }
+}
+
+@media (max-width: 390px) {
+  .screen {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .card {
+    padding: 16px 12px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .subtitle,
+  .typing-text,
+  .caption,
+  .final-text {
+    font-size: 15px;
+  }
+
+  .photo-shell {
+    height: 270px;
+  }
+
+  .game-field {
+    height: 260px;
   }
 }
